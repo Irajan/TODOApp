@@ -1,21 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet, Text, View } from "react-native";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
+import Header from "./components/header";
+import DailyScreen from "./screens/daily";
+import WeeklyScreen from "./screens/weekly";
+import MonthlyScreen from "./screens/monthly";
+
+const Tab = createMaterialTopTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <Header title="TODOs List" />
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Daily" component={DailyScreen} />
+          <Tab.Screen name="Weekly" component={WeeklyScreen} />
+          <Tab.Screen name="Monthly" component={MonthlyScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
